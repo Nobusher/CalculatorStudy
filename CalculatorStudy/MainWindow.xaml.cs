@@ -58,5 +58,14 @@ namespace CalculatorStudy
 
             }
         }
+
+        private double calculate(double a, double b, string op) => op switch
+        {
+            "+" => a + b,
+            "-" => a - b,
+            "×" => a * b,
+            "÷" => b != 0 ? a / b : double.NaN,
+            _ => b
+        };
     }
 }
