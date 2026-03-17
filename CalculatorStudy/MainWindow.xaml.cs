@@ -49,14 +49,14 @@ namespace CalculatorStudy
                     }
                     break;
                 case "+":
-                case "*":
                 case "-":
-                case "÷"
+                case "*":
+                case "÷":
                     _firstNumber = double.Parse(MainDisplay.Text);
                     _operator = input;
                     ExpressionDisplay.Text = $"{_firstNumber} {_operator}";
                     _newInput = true ;
-
+                    break;
 
             }
         }
