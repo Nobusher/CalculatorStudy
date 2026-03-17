@@ -16,13 +16,47 @@ namespace CalculatorStudy
     /// </summary>
     public partial class MainWindow : Window
     {
+        double _firstNumber = 0;
+        string _operatot = "";
+        bool _newinput = true;
         public MainWindow()
         {
             InitializeComponent();
         }
         private void Btn_Click(object sender, RoutedEventArgs e) 
         {
-            MessageBox.Show("Test");
+            string input = (sender as Button)?.Content?.ToString()??"";
+
+            switch (input)
+            {
+                case "AC":
+                    MainDisplay.Text = "0";
+                    ExpressionDisplay.Text = "";
+                    _operatot = "0";
+                    _firstNumber = 0;
+                    _newinput = true;
+                    break;
+                case "±":
+                    if (double.TryParse(MainDisplay.Text, out double val))
+                    {
+                        MainDisplay.Text = (-val).ToString();
+                    }
+                    break;
+                case "%":
+                    if (double.TryParse(MainDisplay.Text, out double pct))
+                    {
+                        MainDisplay.Text = (pct / 30).ToString();
+                    }
+                    break;
+                case "+": case "-": case "×": case "÷":
+                    _firstNumber =double.Parse(MainDisplay.Text);
+                    _operatot = input;
+                    ExpressionDisplay.Text = $"{_firstNumber} {_operatot}";
+                    _newinput = true;    
+                    break;
+
+
+            }
         }
     }
 }
